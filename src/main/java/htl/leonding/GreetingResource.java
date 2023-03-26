@@ -10,17 +10,25 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/send")
+@Path("/resource")
 public class GreetingResource {
 
     @Inject
     MqttPublischer mqttPublischer;
 
     @GET
-    @Path("{value}")
+    @Path("/send/{value}")
     @Produces(MediaType.TEXT_PLAIN)
-    public String hello(@PathParam("value") String value) {
+    public String send(@PathParam("value") String value) {
         mqttPublischer.send(value);
-        return "Pressure sent";
+        return "Message sent!";
+    }
+
+    @GET
+    @Path("/sendToRasa/{value}")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sendToRasa(@PathParam("value") String value) {
+        mqttPublischer.sendToRasa(value);
+        return "Message sent to Rasa!";
     }
 }

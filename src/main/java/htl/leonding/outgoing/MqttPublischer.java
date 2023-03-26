@@ -11,8 +11,16 @@ public class MqttPublischer {
     @Inject @Channel("outgoing-channel")
     Emitter<String> emitter;
 
+    //payload = Nutzlast
     public void send(String payload) {
         String topic = "itp/leonie/thaller";
+
+        MqttMessage message = MqttMessage.of(topic, payload);
+        emitter.send(message);
+    }
+
+    public void sendToRasa(String payload) {
+        String topic = "itp/rasa/thaller";
 
         MqttMessage message = MqttMessage.of(topic, payload);
         emitter.send(message);

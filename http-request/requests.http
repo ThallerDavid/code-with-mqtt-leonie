@@ -18,3 +18,11 @@ Content-Length: 72
 }
 
 ###
+
+POST http://localhost:8080/resource/send/rasa
+
+{
+  "sender": "someuser",
+  "text":"hello",
+  "metadata": {}
+}

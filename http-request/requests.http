@@ -2,10 +2,6 @@ GET  https://student.cloud.htl-leonding.ac.at/d.pavelescu/rasa/webhooks/web/
 
 ###
 
-GET http://localhost:8080/resource/send/nachricht
-
-###
-
 GET http://localhost:8080/resource/get/messages
 ###
 

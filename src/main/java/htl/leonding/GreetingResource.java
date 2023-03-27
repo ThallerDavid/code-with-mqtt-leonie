@@ -44,6 +44,7 @@ public class GreetingResource {
     @Produces(MediaType.APPLICATION_JSON)
     public String sendPost(Message message) {
         messages.add(message.getText());
+        mqttPublischer.send(message);
         return "Message posted! " + message.getSender() + ": " + message.getText();
     }
 

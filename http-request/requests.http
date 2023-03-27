@@ -6,6 +6,9 @@ GET http://localhost:8080/resource/send/nachricht
 
 ###
 
+GET http://localhost:8080/resource/get/messages
+###
+
 POST https://student.cloud.htl-leonding.ac.at/d.pavelescu/rasa/webhooks/web/webhook HTTP/1.1
 Host: student.cloud.htl-leonding.ac.at
 Content-Type: application/json
@@ -13,16 +16,17 @@ Content-Length: 72
 
 {
     "sender": "someuser",
-    "text":"hello",
+    "text":"Hallo Wie gehts?",
     "metadata": {}
 }
 
 ###
 
-POST http://localhost:8080/resource/send/rasa
+POST http://localhost:8080/resource/send/rasa HTTP/1.1
 
 {
   "sender": "someuser",
-  "text":"hello",
+  "text":"tschuess",
   "metadata": {}
 }
+

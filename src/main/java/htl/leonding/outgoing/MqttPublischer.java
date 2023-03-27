@@ -1,5 +1,6 @@
 package htl.leonding.outgoing;
 
+import htl.entity.Message;
 import io.smallrye.reactive.messaging.mqtt.MqttMessage;
 import org.eclipse.microprofile.reactive.messaging.Channel;
 import org.eclipse.microprofile.reactive.messaging.Emitter;
@@ -19,19 +20,17 @@ public class MqttPublischer {
 
 
     //payload = Nutzlast
-    public void send(String payload) {
+    public void send(Message message) {
         String topic = "itp/leonie/message";
 
-        MqttMessage message = MqttMessage.of(topic, payload);
-        emitter.send(message);
-        sendToRasa(payload);
+        MqttMessage mqttMessage = MqttMessage.of(topic, message.getText());
+        emitter.send(mqttMessage);
+        sendToRasa(mqttMessage);
     }
-
-    public String sendToRasa(String payload) {
+    public void sendToRasa(MqttMessage message) {
         String topic = "itp/rasa/message";
-
-        MqttMessage message = MqttMessage.of(topic, payload);
-        emitter.send(message);
-        return String.valueOf(message);
+        emitter.send(String.valueOf(MqttMessage.of(topic, message.getPayload())));
     }
+
+
 }

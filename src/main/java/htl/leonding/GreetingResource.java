@@ -78,11 +78,17 @@ public class GreetingResource {
             String url = "https://student.cloud.htl-leonding.ac.at/d.pavelescu/rasa/webhooks/web/webhook";
             HttpClient client = HttpClients.createDefault();
 
+            HttpPost httpPost = new HttpPost(url);
+            String json = "{\"sender\": \"" + message.getSender() + "\", \"text\": \"" + message.getText() + "\"}";
+            StringEntity entity = new StringEntity(json, ContentType.APPLICATION_JSON);
+            httpPost.setEntity(entity);
+            HttpResponse response = client.execute(httpPost);
+            HttpEntity responseEntity = response.getEntity();
+            String responseString = EntityUtils.toString(responseEntity, "UTF-8");
+            return responseString;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            LOG.error("Failed to send message to Rasa webhook", e);
+            return "Failed to send message to Rasa webhook";
         }
-
-        return null;
     }
-
 }

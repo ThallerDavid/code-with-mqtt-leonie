@@ -21,7 +21,7 @@ public class MqttPublischer {
 
     //payload = Nutzlast
     public void send(Message payload) {
-        String topic = "itp/leonie/message";
+        String topic = "itp/user/question";
 
         MqttMessage mqttMessage = MqttMessage.of(topic, payload.getText());
         emitter.send(mqttMessage);
@@ -29,7 +29,7 @@ public class MqttPublischer {
     }
 
     public void sendToRasa(Message payload) {
-        String topic = "itp/rasa/message";
+        String topic = "itp/leonie/answer";
 
         MqttMessage mqttMessage = MqttMessage.of(topic, payload.getText());
         emitter.send(mqttMessage);

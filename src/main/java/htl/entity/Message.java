@@ -12,6 +12,14 @@ public class Message {
         this.metadata = metadata;
     }
 
+    public Message(String sender, String text) {
+        this.sender = sender;
+        this.text = text;
+    }
+
+    public Message() {
+    }
+
     public Object getMetadata() {
         return metadata;
     }
